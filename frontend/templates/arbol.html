@@ -1,51 +1,43 @@
-
-
- <!DOCTYPE html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="es">
 <head>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-      #mynetwork {
-        width: 900px;
-        height:800px;
-        border: 1px solid lightgray;
-      }
-    </style>
+    <meta charset="UTF-8">
+    <title>Árbol de Derivación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 </head>
 <body>
-<H1> Árbol de Derivación Gramatical</H1>
+    <div class="container">
+        <h1>🌳 Árbol de Derivación Gramatical</h1>
 
-    <div id="mynetwork"></div>
-    <script>
-        // Función para actualizar el estado
-        function actualizarEstado(mensaje, esError = false) {
-            const statusBar = document.getElementById('status-bar');
-            statusBar.textContent = mensaje;
-            statusBar.className = esError ? 'error-message' : 'status-bar';
-        }
+        {% if cadena %}
+        <p class="info">✅ Cadena ingresada: <strong>{{ cadena }}</strong></p>
+        {% endif %}
 
-        // Verificar si vis.js se cargó correctamente
-        window.addEventListener('load', function() {
-            if (typeof vis === 'undefined') {
-                actualizarEstado('❌ Error: No se pudo cargar la librería vis.js. Verifica tu conexión a internet.', true);
-                document.getElementById('mynetwork').innerHTML =
-                    '<div style="padding: 50px; text-align: center; color: #e74c3c; font-size: 18px;">' +
-                    '❌ <strong>Error de carga</strong><br><br>' +
-                    'La librería vis.js no se ha cargado correctamente.<br>' +
-                    'Posibles soluciones:<br>' +
-                    '• Verifica tu conexión a internet<br>' +
-                    '• Recarga la página<br>' +
-                    '• Contacta al administrador' +
-                    '</div>';
-            } else {
-                actualizarEstado();
-            }
-        });
-    </script>
-    <script type="text/javascript" src="../js/arbol.js"></script>
+        <div id="mynetwork"></div>
 
+        {% if derivaciones %}
+        <div class="derivaciones">
+    <h2>📜 Derivaciones Paso a Paso</h2>
+    <div class="derivacion-cards">
+        {% for forma in derivaciones %}
+            <div class="derivacion-card">
+                <span class="numero-paso">Paso {{ loop.index }}</span>
+                <div class="contenido-forma">{{ forma }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
-    </script>
+        {% endif %}
+
+        <div class="volver">
+            <a href="/" class="btn-volver">← Volver al formulario</a>
+        </div>
+    </div>
+
+    <!-- Cargar el JS generado dinámicamente con vis.js -->
+    <script src="{{ url_for('static', filename='js/arbol.js') }}"></script>
 </body>
 </html>

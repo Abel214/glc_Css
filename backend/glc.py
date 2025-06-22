@@ -199,16 +199,16 @@ class AnalizadorGramaticaVisual(AnalizadorGramatica):
         estado = "activada" if activar else "desactivada"
         print()
 
-
-if __name__ == "__main__":
+#
+#if __name__ == "__main__":
     # Crear analizador con visualización y apertura automática
-    analizador = AnalizadorGramaticaVisual(auto_abrir=True)
-    print("Gramatica Libre De Contexto")
-    print("=" * 60)
+#    analizador = AnalizadorGramaticaVisual(auto_abrir=True)
+#    print("Gramatica Libre De Contexto")
+#    print("=" * 60)
     # Casos de prueba
-    casos_prueba = [
-        "(id)"
-    ]
-    for caso in casos_prueba:
-        analizador.mostrar_analisis(caso)
-        print("\n" + "-" * 40 + "\n")
+#    casos_prueba = [
+#        "(id)"
+#    ]
+#    for caso in casos_prueba:
+#        analizador.mostrar_analisis(caso)
+#       print("\n" + "-" * 40 + "\n")
