@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Árbol de Derivación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🌳 Árbol de Derivación Gramatical</h1>
+
+        {% if cadena %}
+        <p class="info">✅ Cadena ingresada: <strong>{{ cadena }}</strong></p>
+        {% endif %}
+
+        <div id="mynetwork"></div>
+
+        {% if derivaciones %}
+        <div class="derivaciones">
+    <h2>📜 Derivaciones Paso a Paso</h2>
+    <div class="derivacion-cards">
+        {% for forma in derivaciones %}
+            <div class="derivacion-card">
+                <span class="numero-paso">Paso {{ loop.index }}</span>
+                <div class="contenido-forma">{{ forma }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+        {% endif %}
+
+        <div class="volver">
+            <a href="/" class="btn-volver">← Volver al formulario</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/arbol.js') }}"></script>
+</body>
+</html>
