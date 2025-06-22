@@ -1,0 +1,51 @@
+
+
+ <!DOCTYPE html>
+<html lang="en-US">
+<head>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+      #mynetwork {
+        width: 900px;
+        height:800px;
+        border: 1px solid lightgray;
+      }
+    </style>
+</head>
+<body>
+<H1> Árbol de Derivación Gramatical</H1>
+
+    <div id="mynetwork"></div>
+    <script>
+        // Función para actualizar el estado
+        function actualizarEstado(mensaje, esError = false) {
+            const statusBar = document.getElementById('status-bar');
+            statusBar.textContent = mensaje;
+            statusBar.className = esError ? 'error-message' : 'status-bar';
+        }
+
+        // Verificar si vis.js se cargó correctamente
+        window.addEventListener('load', function() {
+            if (typeof vis === 'undefined') {
+                actualizarEstado('❌ Error: No se pudo cargar la librería vis.js. Verifica tu conexión a internet.', true);
+                document.getElementById('mynetwork').innerHTML =
+                    '<div style="padding: 50px; text-align: center; color: #e74c3c; font-size: 18px;">' +
+                    '❌ <strong>Error de carga</strong><br><br>' +
+                    'La librería vis.js no se ha cargado correctamente.<br>' +
+                    'Posibles soluciones:<br>' +
+                    '• Verifica tu conexión a internet<br>' +
+                    '• Recarga la página<br>' +
+                    '• Contacta al administrador' +
+                    '</div>';
+            } else {
+                actualizarEstado();
+            }
+        });
+    </script>
+    <script type="text/javascript" src="../js/arbol.js"></script>
+
+
+    </script>
+</body>
+</html>
