@@ -2,33 +2,13 @@ var nodes = new vis.DataSet([
   { id: 0, label: "E", color: "#FF6B6B", font: { size: 16, color: "white" }, shape: "circle" },
   { id: 1, label: "T", color: "#4ECDC4", font: { size: 16, color: "white" }, shape: "circle" },
   { id: 2, label: "F", color: "#45B7D1", font: { size: 16, color: "white" }, shape: "circle" },
-  { id: 3, label: "(", color: "#DDA0DD", font: { size: 16, color: "black" }, shape: "box" },
-  { id: 4, label: "E", color: "#FF6B6B", font: { size: 16, color: "white" }, shape: "circle" },
-  { id: 5, label: "E", color: "#FF6B6B", font: { size: 16, color: "white" }, shape: "circle" },
-  { id: 6, label: "T", color: "#4ECDC4", font: { size: 16, color: "white" }, shape: "circle" },
-  { id: 7, label: "F", color: "#45B7D1", font: { size: 16, color: "white" }, shape: "circle" },
-  { id: 8, label: "id", color: "#A8E6CF", font: { size: 16, color: "black" }, shape: "box" },
-  { id: 9, label: "+", color: "#96CEB4", font: { size: 16, color: "black" }, shape: "box" },
-  { id: 10, label: "T", color: "#4ECDC4", font: { size: 16, color: "white" }, shape: "circle" },
-  { id: 11, label: "F", color: "#45B7D1", font: { size: 16, color: "white" }, shape: "circle" },
-  { id: 12, label: "id", color: "#A8E6CF", font: { size: 16, color: "black" }, shape: "box" },
-  { id: 13, label: ")", color: "#DDA0DD", font: { size: 16, color: "black" }, shape: "box" },
+  { id: 3, label: "id", color: "#A8E6CF", font: { size: 16, color: "black" }, shape: "box" },
 ]);
 
 var edges = new vis.DataSet([
   { from: 0, to: 1, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
   { from: 1, to: 2, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
   { from: 2, to: 3, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 2, to: 4, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 4, to: 5, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 5, to: 6, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 6, to: 7, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 7, to: 8, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 4, to: 9, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 4, to: 10, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 10, to: 11, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 11, to: 12, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
-  { from: 2, to: 13, arrows: "to", color: { color: "#2B7CE9" }, width: 2 },
 ]);
 
 var container = document.getElementById("mynetwork");
@@ -51,7 +31,7 @@ var options = {
     }
   },
   physics: {
-    enabled: false // Desactivar física para mantener estructura jerárquica
+    enabled: false 
   },
   nodes: {
     borderWidth: 2,

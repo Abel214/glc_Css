@@ -2,7 +2,6 @@ import os
 
 class VisualizadorArbol:
     def __init__(self):
-        # Cambiar la ruta para apuntar al directorio static
         self.url_js = os.path.join("frontend", "static", "js", "arbol.js")
         self.contador_nodos = 0
         self.nodos_js = []
@@ -52,15 +51,10 @@ class VisualizadorArbol:
         return colores.get(simbolo, '#D3D3D3')
 
     def generar_archivo_js(self, arbol):
-        # Resetear contadores para cada nuevo árbol
         self.contador_nodos = 0
         self.nodos_js = []
         self.edges_js = []
-        
-        # Generar los nodos y edges para el nuevo árbol
         self.generar_nodos_edges(arbol)
-        
-        # Construir el string de nodos
         nodes_str = "var nodes = new vis.DataSet([\n"
         for nodo in self.nodos_js:
             nodes_str += f"  {{ id: {nodo['id']}, label: \"{nodo['label']}\", "
@@ -68,8 +62,6 @@ class VisualizadorArbol:
             nodes_str += f"font: {{ size: {nodo['font']['size']}, color: \"{nodo['font']['color']}\" }}, "
             nodes_str += f"shape: \"{nodo['shape']}\" }},\n"
         nodes_str += "]);\n\n"
-
-        # Construir el string de edges
         edges_str = "var edges = new vis.DataSet([\n"
         for edge in self.edges_js:
             edges_str += f"  {{ from: {edge['from']}, to: {edge['to']}, "
@@ -77,8 +69,6 @@ class VisualizadorArbol:
             edges_str += f"color: {{ color: \"{edge['color']['color']}\" }}, "
             edges_str += f"width: {edge['width']} }},\n"
         edges_str += "]);\n\n"
-
-        # Configuración de vis.js
         config_str = """var container = document.getElementById("mynetwork");
 var data = {
   nodes: nodes,
@@ -99,7 +89,7 @@ var options = {
     }
   },
   physics: {
-    enabled: false // Desactivar física para mantener estructura jerárquica
+    enabled: false 
   },
   nodes: {
     borderWidth: 2,
@@ -146,12 +136,9 @@ if (typeof vis === 'undefined') {
         contenido_completo = nodes_str + edges_str + config_str
         
         try:
-            # Crear el directorio si no existe
             directorio = os.path.dirname(self.url_js)
             if not os.path.exists(directorio):
                 os.makedirs(directorio)
-            
-            # Escribir el archivo JavaScript actualizado
             with open(self.url_js, 'w', encoding='utf-8') as archivo:
                 archivo.write(contenido_completo)
             

@@ -1,6 +1,6 @@
 import webbrowser
 import os
-from backend.logica import VisualizadorArbol
+from backend.logicaArbol import VisualizadorArbol
 
 
 class AnalizadorGramatica:
@@ -58,7 +58,6 @@ class AnalizadorGramatica:
 
         elif simbolo == 'T':
             if '*' in tokens:
-                # Encontrar la posición del * principal
                 pos = self._encontrar_operador_principal(tokens, '*')
                 if pos != -1:
                     # T → T * F
@@ -113,7 +112,6 @@ class AnalizadorGramatica:
             hijo = nodo['children'][0]
             nueva_forma = forma_actual.replace(nodo['symbol'], hijo['symbol'], 1)
         else:
-            # Caso con múltiples símbolos: A → B C D
             lado_derecho = ' '.join([hijo['symbol'] for hijo in nodo['children']])
             nueva_forma = forma_actual.replace(nodo['symbol'], lado_derecho, 1)
         if nueva_forma != forma_actual:
@@ -201,7 +199,6 @@ class AnalizadorGramaticaVisual(AnalizadorGramatica):
 
 #
 #if __name__ == "__main__":
-    # Crear analizador con visualización y apertura automática
 #    analizador = AnalizadorGramaticaVisual(auto_abrir=True)
 #    print("Gramatica Libre De Contexto")
 #    print("=" * 60)
